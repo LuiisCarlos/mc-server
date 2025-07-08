@@ -2,6 +2,10 @@
 
 Welcome! This project provides a simple way to run your own Minecraft server using Docker. With a few commands, you and your friends can start playing together easily.
 
+> **Note:** The commands in the Makefile are written for Windows users by default.
+> If you are on Linux or macOS, you can comment out the Windows commands and uncomment the Unix versions provided at the bottom of the Makefile.
+> This project was originally made with Windows in mind, but you can easily adapt it for Unix systems!
+
 ## Requirements
 
 Before you start, make sure you have the following installed:
