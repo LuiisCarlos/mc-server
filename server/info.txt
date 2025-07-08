@@ -1,0 +1,1 @@
+Here, Docker will initialize server files once you run “make start”.

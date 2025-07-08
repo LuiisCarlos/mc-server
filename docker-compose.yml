@@ -1,0 +1,36 @@
+services:
+  minecraft:
+    image: itzg/minecraft-server
+    container_name: mc-server
+    ports:
+      - "25565:25565"
+      - "25575:25575"  # Puerto RCON
+    environment:
+      EULA: "TRUE"
+      VERSION: "1.21.7"
+      ONLINE_MODE: "FALSE"
+      MAX_MEMORY: "8G"
+      RCON_PORT: 25575
+      ENABLE_RCON: "TRUE"
+      RCON_PASSWORD: ${RCON_PASSWORD:m1n3cr4ftCs3rv3r}
+      GAMEMODE: "SURVIVAL"
+      DIFFICULTY: "HARD"
+    networks:
+      - mc-net
+    volumes:
+      - ./server:/data
+    restart: unless-stopped
+
+  rcon:
+    build: .
+    container_name: mc-rcon
+    entrypoint: ["mcrcon", "-H", "mc-server", "-P", "25575", "-p", "${RCON_PASSWORD:m1n3cr4ftCs3rv3r}"]
+    stdin_open: true
+    tty: true
+    depends_on:
+      - minecraft
+    networks:
+      - mc-net
+
+networks:
+  mc-net:
